@@ -8,9 +8,15 @@ import { ShopComponent }  from '../shop/shop.component';
 import { ProductDetailComponent }  from '../productDetail/product-detail.component';
 import { CartComponent } from '../cart/cart.component';
 
+
+import { IncomeComponent }  from '../income/income.component';
+import { IncomeDetailComponent }  from '../incomeDetail/income-detail.component';
+
 @NgModule({
     imports: [
         RouterModule.forRoot([
+            { path: 'income', component: IncomeComponent },
+            { path: 'income/:id', component: IncomeDetailComponent },
             { path: 'cart', component: CartComponent },
             { path: 'product/:id', component: ProductDetailComponent },
             { path: 'shop', component: ShopComponent },
@@ -23,6 +29,7 @@ import { CartComponent } from '../cart/cart.component';
         RouterModule
     ],
     declarations: [
+        IncomeDetailComponent,
         ClassifiedDetailComponent,
         ProductDetailComponent
     ]

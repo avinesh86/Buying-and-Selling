@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="small-12 medium-6 columns">
+        <h1>Add a Income</h1>
+    </div>
+</div>
+
+<form>
+    <div class="row">
+        <div class="small-12 medium-6 columns">
+            <label>Income Date
+            <input type="date" [(ngModel)]="date" name="incomeDate" required #inDate="ngModel" >
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-6 columns">
+        <label>Income Weight
+            <input type="text" [(ngModel)]="weight" name="incomeWeight" required #inWeight="ngModel" >
+        </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-6 columns"> 
+            <label>
+                Income Description
+                <textarea rows="15" id="desc" [(ngModel)]="description" name="incomeDesc"
+                    required #inDesc="ngModel"></textarea>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-6 columns">
+            <label>
+                Item Value
+                <input type="text" [(ngModel)]="itemValue" name="itemValue" required #inValue="ngModel" >
+            </label>
+        </div>
+    </div>
+    <div class="row align-center">
+        <div class="small-12 columns">
+            <div class="expanded button-group">
+            <button class="success button " type="button" [disabled]="!inDate.valid || !inDesc.valid ||!inValue.valid ||!inWeight.valid"
+                (click)="createIncome()">Create Income</button>
+                <button class="cancel button" type="button" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</form>

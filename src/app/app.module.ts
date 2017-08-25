@@ -12,6 +12,7 @@ import { ShopComponent } from './shop/shop.component';
 
 import { ShoppingCartService } from './shared/shopping-cart.service';
 import { CartComponent } from './cart/cart.component';
+import { IncomeComponent } from './income/income.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { CartComponent } from './cart/cart.component';
         HomeComponent,
         ErrorComponent,
 		ShopComponent,
-        CartComponent
+        CartComponent,
+        IncomeComponent
     ],
     providers: [
         ShoppingCartService
