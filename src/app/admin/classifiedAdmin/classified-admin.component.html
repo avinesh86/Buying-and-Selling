@@ -1,0 +1,93 @@
+<div class="top-bar">
+    <div class="top-bar-title">B&S Admin area</div>
+
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li class="admin-menu"><a (click)="chooseMode('add')">Add Classified</a></li>
+            <li *ngIf = "menuChoice" class="admin-menu"><a (click)="chooseMode('')">Manage Classifieds</a></li>
+            <li class="admin-menu"><a [routerLink]="['/admin']">Back to Admin</a></li>
+        </ul>
+    </div>
+    <div *ngIf = "theUser" class="top-bar-right">
+        <ul class="menu">
+            <li class="admin-menu"><a (click)="logout()">Logout</a></li>
+            <li class="admin-menu"><a>{{theUser}} Logged in</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div [ngSwitch]="menuChoice">
+    <div *ngSwitchCase="'add'"><add-menu></add-menu></div>
+    <div *ngSwitchDefault>
+
+        <div *ngIf = "formDisplay" class="row">
+            <div class="row" *ngFor="let clas of classifiedPosts">
+
+                <div class="row spacer">
+	                <div class="media-object">
+		                <div class="media-object-section">
+        		            <div class="align-self-middle">
+                		        <img class="mini-img" [src]= "clas.img">
+                 	        </div>
+              	        </div>
+                        <div class="media-object-section main-section">
+                            <h4>{{clas.title}}</h4>
+                            <p>{{clas.content | truncate:140}}</p>
+                            <div class="button-group align-center">
+                                <a class="button" (click)="editClassified(clas)" >Edit</a>
+                                <a class="button alert" (click)="deleteClassified(clas)">Delete</a>
+                            </div>
+                        </div>
+
+   	                </div>
+                </div>   
+
+            </div>
+        </div>
+
+        <div *ngIf = "!formDisplay" class="row">
+            
+            <form >
+                <div class="row">
+        	        <div class="medium-12 columns"><h3>Edit Classified</h3></div>
+                </div>
+
+                <div class="row">
+                    <div class="small-12 medium-6 columns">
+                        <label>Post Title
+                            <input type="text" [(ngModel)]="singleClassified.title"
+                                name="editTitle" required #psTitle="ngModel">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-12 medium-6 columns">
+                        <label>Classified Content
+                            <textarea rows="15" id="content" [(ngModel)]="singleClassified.content"
+                                name="editcontent" required #psContent="ngModel"></textarea>
+                        </label>
+                    </div>
+                    <div class="small-12 medium-6 columns">
+                        <img [src] = "singleClassified.img" alt="Image preview...">
+                    </div>
+                </div>
+
+                  <div class="row align-center">
+                    <div class="small-12 columns">
+                        <div class="expanded button-group">
+    <button class="success button " type="button" [disabled]="!psTitle.valid || !psContent.valid" 
+        (click)="updatePost(singleClassified)">Update Classified</button>
+    <button class="cancel button" type="button" (click)="cancelEdit()">Cancel Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
